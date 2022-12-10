@@ -1,30 +1,17 @@
-const marquee = document.getElementById("marquee");
-const video = document.querySelector("video");
-const fabbs = document.getElementById("fabbs");
-let fireworks;
+/* --------------------------- Element refs --------------------------- */
 
-const startParty = (e) => {
-  e.stopPropagation();
-  document.body.classList.add("party-started");
-  fireworks = new Fireworks(document.querySelector("#fireworks-container"), {});
-  toggleParty();
+const ui = {
+  container: document.body,
+  marquee: document.getElementById("marquee"), // side-scrolling text container
+  video: document.querySelector("video"),
+  fabbs: document.getElementById("fabbs"), // central flashing "Fabbs"
+  fireworks: document.querySelector("#fireworks-container"),
+  partyBtn: document.getElementById("start-party-button"),
 };
 
-const toggleParty = () => {
-  if (video.paused) {
-    fireworks.start();
-    video.play();
-  } else {
-    video.pause();
-    fireworks.stop();
-  }
-};
+/* --------------------------- Variables --------------------------- */
 
-document
-  .getElementById("start-party-button")
-  .addEventListener("click", startParty);
-
-document.body.addEventListener("click", toggleParty);
+let fireworksControls; // Populated in startParty. Cannot populate immediately because then canvas becomes 0*0
 
 const marqueeLines = [
   "Vem är bäst av ALLA?",
@@ -32,6 +19,30 @@ const marqueeLines = [
   "Säg vem som snyggast i landet är?",
   "Vem är störst och vackrast i skogen?",
 ];
+
+/* --------------------------- Functions --------------------------- */
+
+// Used for initial button
+const startParty = (e) => {
+  e.stopPropagation();
+  ui.container.classList.add("party-started");
+  fireworksControls = new Fireworks(ui.fireworks, {});
+  toggleParty();
+};
+
+// Body click handler, as way to pause video/fireworks (mainly useful during dev)
+const toggleParty = () => {
+  if (ui.video.paused) {
+    fireworksControls.start();
+    ui.video.play();
+  } else {
+    ui.video.pause();
+    fireworksControls.stop();
+  }
+};
+
+// Triggered everytime the marquee animation has scrolled by! (and at boot)
+// We should then change marquee text and make central Fabbs flash a bit
 const updateMarquee = () => {
   const currentLine = marquee.innerText;
   const currentIdx = marqueeLines.findIndex((l) => l === currentLine);
@@ -43,8 +54,17 @@ const updateMarquee = () => {
   }, 500);
 };
 
-const setMarquee = marquee.addEventListener("animationiteration", () => {
+/* --------------------------- Catch events --------------------------- */
+
+ui.partyBtn.addEventListener("click", startParty);
+
+ui.container.addEventListener("click", toggleParty);
+
+ui.marquee.addEventListener("animationiteration", () => {
   updateMarquee();
 });
 
+/* --------------------------- Boot --------------------------- */
+
+// Ensure marquee is populated with 1st line
 updateMarquee();

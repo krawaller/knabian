@@ -21,7 +21,6 @@ body.party-started #start-party-button {
   font-size: 5vh;
   cursor: pointer;
 }
-
 #party-container {
   display: none;
   height: 100%;
@@ -52,6 +51,7 @@ body.party-started #start-party-button {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   color: white;
+  white-space: nowrap;
 }
 
 @keyframes marquee {
@@ -59,7 +59,7 @@ body.party-started #start-party-button {
     left: 150vw;
   }
   100% {
-    left: -150vw;
+    left: -100vw;
   }
 }
 
