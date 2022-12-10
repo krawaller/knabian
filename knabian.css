@@ -11,8 +11,25 @@ body {
   justify-content: center;
   align-items: center;
 }
-video {
-  /* width: 140vw; */
+body.party-started #party-container {
+  display: flex;
+}
+body.party-started #start-party-button {
+  display: none;
+}
+#start-party-button {
+  font-size: 5vh;
+  cursor: pointer;
+}
+
+#party-container {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 }
 #fireworks-container {
   position: absolute;
