@@ -48,7 +48,7 @@ body.party-started #start-party-button {
   font-family: Verdana, Geneva, sans-serif;
   font-size: var(--marquee-height);
   animation-name: marquee;
-  animation-duration: 8s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   color: white;
@@ -60,5 +60,46 @@ body.party-started #start-party-button {
   }
   100% {
     left: -150vw;
+  }
+}
+
+#fabbs {
+  position: absolute;
+  --fabbs-height: 20vh;
+  height: var(--fabbs-height);
+  width: 100%;
+  top: calc(50% - calc(var(--fabbs-height) / 2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: var(--fabbs-height);
+  animation-iteration-count: 0;
+  animation-duration: 0.8s;
+  animation-name: fabbs;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#fabbs.flash {
+  opacity: 1;
+}
+
+@keyframes fabbs {
+  0% {
+    transform: scale(1) rotate(0);
+  }
+  25% {
+    transform: scale(1.3) rotate(25deg);
+  }
+  50% {
+    transform: scale(1) rotate(0);
+  }
+  75% {
+    transform: scale(0.7) rotate(-25deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
   }
 }
