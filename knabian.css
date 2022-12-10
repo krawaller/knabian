@@ -1,0 +1,47 @@
+html {
+  overflow: hidden;
+}
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+video {
+  /* width: 140vw; */
+}
+#fireworks-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+#marquee {
+  --marquee-height: 7vh;
+  position: absolute;
+  top: calc(50% - calc(var(--marquee-height) / 2));
+  width: 100vw;
+  text-align: center;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: var(--marquee-height);
+  animation-name: marquee;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: white;
+}
+
+@keyframes marquee {
+  0% {
+    left: 150vw;
+  }
+  100% {
+    left: -150vw;
+  }
+}
