@@ -51,7 +51,7 @@ const updateMarquee = () => {
   fabbs.classList.add("flash");
   setTimeout(() => {
     fabbs.classList.remove("flash");
-  }, 500);
+  }, 1000);
 };
 
 /* --------------------------- Catch events --------------------------- */
