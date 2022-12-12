@@ -25,6 +25,7 @@ const marqueeLines = [
 // Used for initial button
 const startParty = (e) => {
   e.stopPropagation();
+  updateMarquee();
   ui.container.classList.add("party-started");
   ui.container.requestFullscreen();
   fireworksControls = new Fireworks(ui.fireworks, {});
@@ -64,8 +65,3 @@ ui.container.addEventListener("click", toggleParty);
 ui.marquee.addEventListener("animationiteration", () => {
   updateMarquee();
 });
-
-/* --------------------------- Boot --------------------------- */
-
-// Ensure marquee is populated with 1st line
-updateMarquee();
