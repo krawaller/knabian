@@ -1,6 +1,8 @@
-html {
-  overflow: hidden;
-}
+/*
+--------- Parent to initial button and party container ---------
+Receives .party-started class when the button is pressed
+*/
+
 body {
   height: 100vh;
   margin: 0;
@@ -11,24 +13,38 @@ body {
   justify-content: center;
   align-items: center;
 }
-body.party-started #party-container {
-  display: flex;
-}
-body.party-started #start-party-button {
-  display: none;
-}
+
+/*
+--------- Button to kick things off ---------
+The only thing initially visible on screen
+*/
+
 #start-party-button {
   font-size: 5vh;
   cursor: pointer;
 }
-#party-container {
+
+body.party-started #start-party-button {
   display: none;
+}
+
+/*
+--------- Wrapper for all stuff initially invisible ---------
+Parent for video, marquee and flashing fabbs
+*/
+
+#party-container {
+  display: none; /* Invisible until body gets .part-started */
   height: 100%;
   width: 100%;
   position: relative;
   overflow: hidden;
   justify-content: center;
   align-items: center;
+}
+
+body.party-started #party-container {
+  display: flex;
 }
 
 /* --------- Injected by Fireworks library --------- */
@@ -42,7 +58,10 @@ canvas {
   width: 100vw;
 }
 
-/* --------- Rolling Marquee, animation-end handler triggering flashing Fabbs --------- */
+/*
+--------- Rolling Marquee ---------
+Has animation-end handler triggering flashing Fabbs  
+*/
 
 #marquee {
   --marquee-height: 7vh;
@@ -69,7 +88,10 @@ canvas {
   }
 }
 
-/* --------- Central flashing "FABBS", visible between marquee runs --------- */
+/*
+--------- Central flashing "FABBS" ---------
+Briefly visible between marquee runs
+*/
 
 #fabbs {
   position: absolute;
@@ -86,7 +108,7 @@ canvas {
   animation-duration: 0.8s;
   animation-name: fabbs;
   animation-iteration-count: infinite;
-  opacity: 0;
+  opacity: 0; /* Hidden without the .flash class */
   transition: opacity 0.3s ease;
 }
 
