@@ -26,6 +26,7 @@ const marqueeLines = [
 const startParty = (e) => {
   e.stopPropagation();
   ui.container.classList.add("party-started");
+  ui.container.requestFullscreen();
   fireworksControls = new Fireworks(ui.fireworks, {});
   toggleParty();
 };
