@@ -11,8 +11,10 @@ const ui = {
 
 /* --------------------------- Variables --------------------------- */
 
-let fireworksControls; // Populated in startParty. Cannot populate immediately because then canvas becomes 0*0
+// Accessed in `toggleParty`
+const fireworksControls = new Fireworks(ui.container, {});
 
+// Used in `updateMarquee`
 const marqueeLines = [
   "Vem är bäst av ALLA?",
   "Who you gonna call?",
@@ -28,11 +30,11 @@ const startParty = (e) => {
   updateMarquee();
   ui.container.classList.add("party-started");
   ui.container.requestFullscreen();
-  fireworksControls = new Fireworks(ui.fireworks, {});
   toggleParty();
 };
 
-// Body click handler, as way to pause video/fireworks (mainly useful during dev)
+// Called both in `startParty` and as body click handler
+// The body handler is a way to pause video/fireworks (mainly useful during dev)
 const toggleParty = () => {
   if (ui.video.paused) {
     fireworksControls.start();
@@ -62,6 +64,4 @@ ui.partyBtn.addEventListener("click", startParty);
 
 ui.container.addEventListener("click", toggleParty);
 
-ui.marquee.addEventListener("animationiteration", () => {
-  updateMarquee();
-});
+ui.marquee.addEventListener("animationiteration", updateMarquee);

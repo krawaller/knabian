@@ -30,7 +30,10 @@ body.party-started #start-party-button {
   justify-content: center;
   align-items: center;
 }
-#fireworks-container {
+
+/* --------- Injected by Fireworks library --------- */
+
+canvas {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -38,6 +41,9 @@ body.party-started #start-party-button {
   height: 100vh;
   width: 100vw;
 }
+
+/* --------- Rolling Marquee, animation-end handler triggering flashing Fabbs --------- */
+
 #marquee {
   --marquee-height: 7vh;
   position: absolute;
@@ -62,6 +68,8 @@ body.party-started #start-party-button {
     left: -100vw;
   }
 }
+
+/* --------- Central flashing "FABBS", visible between marquee runs --------- */
 
 #fabbs {
   position: absolute;
